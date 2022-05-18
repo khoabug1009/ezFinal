@@ -1,0 +1,24 @@
+<div  class="table-responsive">
+				<div><button ng-click = "chuyenTabThemLop()" >Tạo lớp</button></div>
+				<table  class="table-condensed">
+					<thead>
+						<tr>
+							<td>STT</td>
+							<td>Lop</td>
+							<td>Thao tac</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="kho in khoi1" >
+							<td >{{$index}}</td>
+							<td >{{kho.name}}</td>
+							<td>
+								<button  href ng-click="loadFormEdit(kho,$index); chuyenTabSuaLop()" >sửa</button>
+								<button ng-click="reMoveLop(kho,index)">xóa</button>
+							</td>
+
+						</tr>
+					</tbody>
+				</table>
+
+</div>

@@ -1,0 +1,18 @@
+<div >
+				<form ng-submit="addLop(form)">
+					<p>Thêm lớp</p>
+					<p>Tên lớp: <input type="text" ng-model="form.name" required></p>
+					<p>Thuộc lớp:
+						<select >
+							<optgroup ng-repeat="kho in khoi" >
+
+								<option >{{kho.name}}</option>
+
+							</optgroup>
+
+						</select>
+						
+					</p>
+					<input type="submit"  value="Lưu">
+				</form>
+			</div>

@@ -1,0 +1,23 @@
+
+				<h1>Sửa học sinh</h1>
+
+				<div>
+					<form >
+
+						Nhap ten: <input type="text"  ng-model="objecths.hoten">
+						Nhap ngay sinh: <input type="date"  ng-model="objecths.tuoi">
+						<p>lớp
+							<select ng-model="objecths.lop">
+								<optgroup ng-repeat="kho in khoi1" >
+
+									<option >{{kho.name}}</option>
+
+								</optgroup>
+
+							</select>
+						</p>
+						<button ng-click="saveEdit()" >lưu</button>
+					</form>
+
+				</div>
+			

@@ -1,0 +1,48 @@
+
+<div>
+	<div  class="flex"  >
+					<p><input type="text"  placeholder=" họ tên" ng-model = "Userinput.hoten"></p>
+					<p><input type="text"  placeholder="tuổi" ng-model = "Userinput.tuoi"></p>
+					<select ng-model = "Userinput.lop">
+						<optgroup ng-repeat="kho in khoi1" >
+
+							<option >{{kho.name}}</option>
+
+						</optgroup>
+
+					</select>
+				<button ng-click="searchSinhVien()" class="btn-info" >tìm kiếm</a></button>
+
+	</div>
+	<div  class="table-responsive">
+					<button  class="btn-primary" ng-click = "chuyenTabThemHS()">Thêm sinh viên</button>
+					<table  class="table-condensed"  >
+						<thead >
+							<tr>
+								<td width="100px" align="center" >STT</td>
+								<td width="100px" align="center" >HO TEN</td>
+								<td width="100px" align="center" >TUOI</td>
+								<td width="100px" align="center" >LOP</td>
+								<td>THAO TAC</td>
+							</tr>
+						</thead>
+						<tbody >
+							<tr dir-paginate="sinh in SinhVien |itemsPerPage:5"  >
+								<td>{{sinh.id}}</td>
+								<td>{{sinh.hoten}}</td>
+								<td>{{tinhTuoi(sinh.tuoi)}}</td>
+								<td>{{sinh.lop}}</td>
+								<td>
+									<button  class="btn-warning" ng-click = "chuyenTabSuaHS(sinh);">Sửa</button>
+									<input type="submit"  value="Xóa" ng-click="reMoveSinhVien(sinh)" class="btn-danger">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<dir-pagination-controls
+	                            max-size="5"
+	                            direction-links="true"
+	                            boundary-links="true"  >
+	                    </dir-pagination-controls>
+	</div>
+</div>

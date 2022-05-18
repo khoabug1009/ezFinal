@@ -1,0 +1,17 @@
+<div >
+				<form ng-submit="saveEditlop()">
+					<p>sửa lớp</p>
+					<p>Tên lớp: <input type="text"  ng-model="formeditclass.name"></p>
+					<p>Thuộc lớp:
+						<select >
+							<optgroup ng-repeat="kho in khoi" >
+
+								<option >{{kho.name}}</option>
+
+							</optgroup>
+
+						</select>
+					</p>
+					<input type="submit"  value="Lưu">
+				</form>
+			</div>

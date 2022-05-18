@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<title>ezStudy</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script> -->
+        <script src="/scripts/angular.min.js"> </script>
+		<script src="/scripts/angular-route.min.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.3/underscore-umd-min.js"></script>
+        <script src="/scripts/app.js"></script>
+        <script src="/scripts/dirPagination.js"></script>
+		<link rel="stylesheet" href="/styles/ez.css">
+	</head>
+	<body >
+		<div ng-app="myApp" ng-controller="nested_repeat">
+			<div class="breadcrumb">
+				<ul>
+					<li>ezStudy</li>
+					<li><a  href="#/student" >Hoc sinh</a></li>
+					<li><a href="#/class">Lop</a></li>
+				</ul>
+			</div>
+			<div ng-view></div>
+		</div>
+		
+	</body>
+</html> 

@@ -1,0 +1,18 @@
+<div >
+				<p>Thêm sinh viên</p>
+				<form  ng-submit="addSinhVien(hoten,tuoi,lop)" class="form-horizontal">
+					<p>họ và tên <input type="text" ng-model="hoten" required ></p>
+					<p>năm sinh <input type="date" ng-model="tuoi" required></p>
+					<p>lớp
+						<select ng-model="lop">
+							<optgroup ng-repeat="kho in khoi1" >
+
+								<option >{{kho.name}}</option>
+
+							</optgroup>
+
+						</select>
+					</p>
+					<input type="submit"  value="lưu" class="btn-primary">
+				</form>
+</div>
