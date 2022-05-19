@@ -155,7 +155,7 @@ app.config(function ($routeProvider) {
 					alert("data must be entered in this field")
 				}else{
 					$scope.khoi1.push(form);
-					$scope.setTab(5);
+					$location.path('/class');
 				}
 				
 			}
