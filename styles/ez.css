@@ -5,10 +5,10 @@ ul{
 				overflow: hidden;
 				background-color: none;
 			}
-			li{
-				margin-left: 25px;
-				float: left;
-			}
-			.flex{
-				display: flex;
-			}
+li{
+	margin-left: 25px;
+	float: left;
+}
+.flex{
+	display: flex;
+}

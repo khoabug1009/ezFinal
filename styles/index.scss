@@ -1,0 +1,20 @@
+.student{
+    display: flex;
+    justify-content: center;
+}
+table{
+    thead{
+        tr{
+            td{
+                background-color: red;
+            }
+        }
+    }
+    tbody{
+        tr{
+            td{
+                background-color: blueviolet;
+            }
+        }
+    }
+}

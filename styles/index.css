@@ -1,0 +1,17 @@
+.student {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+table thead tr td {
+  background-color: red;
+}
+
+table tbody tr td {
+  background-color: blueviolet;
+}
+/*# sourceMappingURL=index.css.map */

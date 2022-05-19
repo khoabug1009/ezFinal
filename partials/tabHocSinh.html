@@ -1,18 +1,17 @@
 
-<div>
+<div class="student">
 	<div  class="flex"  >
 					<p><input type="text"  placeholder=" họ tên" ng-model = "Userinput.hoten"></p>
 					<p><input type="text"  placeholder="tuổi" ng-model = "Userinput.tuoi"></p>
 					<select ng-model = "Userinput.lop">
-						<optgroup ng-repeat="kho in khoi1" >
+						<optgroup>
 
-							<option >{{kho.name}}</option>
+							<option ng-repeat="kho in khoi1" value="{{kho.name}}">{{kho.prefix}}{{kho.name}}</option>
 
 						</optgroup>
 
 					</select>
 				<button ng-click="searchSinhVien()" class="btn-info" >tìm kiếm</a></button>
-
 	</div>
 	<div  class="table-responsive">
 					<button  class="btn-primary" ng-click = "chuyenTabThemHS()">Thêm sinh viên</button>

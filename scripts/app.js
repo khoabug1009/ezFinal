@@ -36,21 +36,15 @@ app.config(function ($routeProvider) {
 		app.controller('nested_repeat',  function($scope, $location){
 			
 			var khoi1 = [
-				{name: "lop" },
-				{name: "lop11" },
-				{name: "lop11a" },
-				{name: "lop11b" },
-				{name: "lop12" },
-				{name: "lop12a" },
-				{name: "lop12b" }
+				{id:0, name: "lop", parentID: 0, prefix: '', level: 0},
+				{id:1, name: "lop11", parentID: 1, prefix: '', level: 1},
+				{id:2, name: "lop11a", parentID: 2,prefix: '-',level: 2},
+				{id:3, name: "lop11b", parentID: 2,prefix: '-',level: 2},
+				{id:4, name: "lop12", parentID: 1, prefix: '',level: 1},
+				{id:5, name: "lop12a", parentID: 4,prefix: '-',level: 2},
+				{id:6, name: "lop12b", parentID: 4,prefix: '-',level: 2}
 			];
 			$scope.khoi1 = khoi1;
-			var khoi = [
-				{name:"lop10"},
-				{name:"lop11"},
-				{name:"lop12"}
-			];
-			$scope.khoi = khoi;
 			
 			var SinhVien = [
 				{id: 1, hoten: "khoa", tuoi:new Date(1992,02,02),lop:"lop11a"},
@@ -71,8 +65,9 @@ app.config(function ($routeProvider) {
 			$scope.chuyenTabSuaHS = function(hs){
 				$scope.objecths = hs; 
 				$location.path('/editStudent');
-
-
+			}
+			$scope.chuyenTabThemHS = function(){
+				$location.path('/addStudent');
 			}
 			$scope.chuyenTabThemLop = function(){
 				$location.path('/addClass');
@@ -144,19 +139,76 @@ app.config(function ($routeProvider) {
 				alert("  have successfully added ")
 
 			};
-			$scope.chuyenTabThemHS = function(){
-				$location.path('/addStudent');
-			}
-			$scope.addLop = function(form){
-				$scope.form = {
-					name: ""
+			
+			$scope.addLop = function(name,grade){
+				 var form = {
+					id:'',
+					name:'',
+					parentID:'',
+					prefix: '',
+					level: ''
 				};
-				if (form.name == "") {
-					alert("data must be entered in this field")
-				}else{
+				
+				if (grade == '' || grade == undefined) {
+					form.id = $scope.khoi1.length + 1;
+					form.name = name;
+					form.parentID = 0;
+					form.prefix = '';
+					form.level = 1;
+			  
 					$scope.khoi1.push(form);
 					$location.path('/class');
-				}
+					return;
+				  }
+				  var indexClass = '';
+				  if (!grade.includes('-')) {
+					for (var index = 0; index < $scope.khoi1.length; index++) {
+					  if ($scope.khoi1[index].name.includes(grade)) {
+						indexClass = index;
+						break;
+					  }
+					}
+					if (indexClass >= 0) {
+					  form.id = $scope.khoi1.length + 1;
+					  form.name = name;
+					  form.parentID = $scope.khoi1[indexClass].id;
+					  form.level = $scope.khoi1[indexClass].level + 1;
+					  
+					  
+					  var prefix = '';
+					  for (var i = 0; i < $scope.khoi1[indexClass].level; i++) {
+						prefix += '-';
+					  }
+					  form.prefix = prefix;
+					  $scope.khoi1.splice(indexClass + 1, 0, form);
+			  
+					}
+					$location.path('/class');
+					return;
+				  }
+				  var gradeSplit = grade.split('-');
+			  
+				  for (let index = 0; index < $scope.khoi1.length; index++) {
+					if ($scope.khoi1[index].name.includes(gradeSplit[gradeSplit.length - 1])) {
+					  indexClass = index;
+					  break;
+					}
+				  }
+				  if (indexClass > 0) {
+					form.id = $scope.khoi1.length + 1;
+					form.name = name;
+					form.parentID = $scope.khoi1[indexClass].id;
+					form.level = $scope.khoi1[indexClass].level + 1;
+				
+					var prefix = '';
+					for (var i = 0; i < $scope.khoi1[indexClass].level; i++) {
+					  prefix += '-';
+					}
+					form.prefix = prefix;
+					$scope.khoi1.splice(indexClass + 1, 0, form);
+					$location.path('/class');
+				  }  
+				
 				
 			}
 			$scope.tinhTuoi = function(ns){
@@ -175,6 +227,8 @@ app.config(function ($routeProvider) {
 				var index = $scope.SinhVien.indexOf(SinhVien);
 				$scope.SinhVien.splice(index,1);
 			}
+
+			
 
 			
 			//edit
@@ -207,9 +261,9 @@ app.config(function ($routeProvider) {
 				$location.path('/student');
 				
 			}
-
+			
 			//search
-			$scope.search = {};
+			//$scope.search = {};
 			$scope.Userinput = {};
 			$scope.searchSinhVien = function () {
 				

@@ -5,9 +5,9 @@
 					<p>năm sinh <input type="date" ng-model="tuoi" required></p>
 					<p>lớp
 						<select ng-model="lop">
-							<optgroup ng-repeat="kho in khoi1" >
+							<optgroup  >
 
-								<option >{{kho.name}}</option>
+								<option ng-repeat="kho in khoi1" value="{{kho.name}}">{{kho.prefix}}{{kho.name}}</option>
 
 							</optgroup>
 

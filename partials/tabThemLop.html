@@ -1,12 +1,12 @@
 <div >
-				<form ng-submit="addLop(form)">
+				<form ng-submit="addLop(form.name, form.grad)">
 					<p>Thêm lớp</p>
 					<p>Tên lớp: <input type="text" ng-model="form.name" required></p>
 					<p>Thuộc lớp:
-						<select >
-							<optgroup ng-repeat="kho in khoi" >
-
-								<option >{{kho.name}}</option>
+						<select ng-model = "form.grad">
+							<optgroup  >
+					
+								<option ng-repeat="kho in khoi1" >{{kho.prefix}}{{kho.name}}</option>
 
 							</optgroup>
 

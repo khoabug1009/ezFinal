@@ -4,9 +4,9 @@
 					<p>Tên lớp: <input type="text"  ng-model="formeditclass.name"></p>
 					<p>Thuộc lớp:
 						<select >
-							<optgroup ng-repeat="kho in khoi" >
+							<optgroup  >
 
-								<option >{{kho.name}}</option>
+								<option ng-repeat="kho in khoi1" value="{{kho.name}}">{{kho.prefix}}{{kho.name}}</option>
 
 							</optgroup>
 

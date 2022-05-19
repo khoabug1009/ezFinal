@@ -8,9 +8,9 @@
 						Nhap ngay sinh: <input type="date"  ng-model="objecths.tuoi">
 						<p>lớp
 							<select ng-model="objecths.lop">
-								<optgroup ng-repeat="kho in khoi1" >
+								<optgroup  >
 
-									<option >{{kho.name}}</option>
+									<option ng-repeat="kho in khoi1" value="{{kho.name}}">{{kho.prefix}}{{kho.name}}</option>
 
 								</optgroup>
 
