@@ -204,15 +204,7 @@ app.config(function ($routeProvider) {
 			$scope.deleteClass = function (classroom) {
 				var indexClass = $scope.khoi1.indexOf(classroom);
 				$scope.khoi1.splice(indexClass, 1);
-				var indexx = indexClass+1;
-				var k =0;
-				while(k<$scope.SinhVien.length){
-				  if($scope.SinhVien[k].idClass == indexx){
-					$scope.SinhVien.splice(k,1);
-				  }else{
-					k++;
-				  }
-				}
+				
 				var i = 0;
 				while (i < $scope.khoi1.length) {
 				  var check = false;
