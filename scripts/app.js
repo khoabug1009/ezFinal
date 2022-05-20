@@ -29,33 +29,38 @@ app.config(function ($routeProvider) {
 
         .when('/editClass', {
             templateUrl: '/partials/tabSuaLop.html'
+			
         })
 
 });
 
-		app.controller('nested_repeat',  function($scope, $location){
+		app.controller('nested_repeat',  function($scope, $location,$routeParams){
 			
 			var khoi1 = [
 				{id:0, name: "lop", parentID: 0, prefix: '', level: 0},
-				{id:1, name: "lop11", parentID: 1, prefix: '', level: 1},
-				{id:2, name: "lop11a", parentID: 2,prefix: '-',level: 2},
-				{id:3, name: "lop11b", parentID: 2,prefix: '-',level: 2},
-				{id:4, name: "lop12", parentID: 1, prefix: '',level: 1},
+				{id:1, name: "lop11", parentID: 0, prefix: '', level: 1},
+				{id:2, name: "lop11a", parentID: 1,prefix: '-',level: 2},
+				{id:3, name: "lop11b", parentID: 1,prefix: '-',level: 2},
+				{id:4, name: "lop12", parentID: 0, prefix: '',level: 1},
 				{id:5, name: "lop12a", parentID: 4,prefix: '-',level: 2},
 				{id:6, name: "lop12b", parentID: 4,prefix: '-',level: 2}
 			];
 			$scope.khoi1 = khoi1;
 			
 			var SinhVien = [
-				{id: 1, hoten: "khoa", tuoi:new Date(1992,02,02),lop:"lop11a"},
-				{id: 2, hoten: "manh", tuoi:new Date(2001,02,02),lop:"lop11b"},
-				{id: 3, hoten: "huy", tuoi:new Date(1999,02,02),lop:"lop12a"},
-				{id: 4, hoten: "nam", tuoi:new Date(1994,02,02),lop:"lop12b"}
+				{id: 1, hoten: "khoa", tuoi:new Date(1992,02,02),lop:"lop11a",idclass:2},
+				{id: 2, hoten: "manh", tuoi:new Date(2001,02,02),lop:"lop11b",idclass:3},
+				{id: 3, hoten: "huy", tuoi:new Date(1999,02,02),lop:"lop12a",idclass:5},
+				{id: 4, hoten: "nam", tuoi:new Date(1994,02,02),lop:"lop12b",idclass:6}
 				
 			];
 
 			$scope.SinhVienDefault = angular.copy($scope.SinhVien);
 
+			
+
+
+			
 			//paging hoc sinh
 
 			$scope.chuyenTabThemHS = function(){
@@ -95,27 +100,7 @@ app.config(function ($routeProvider) {
                             $scope.reverse = !$scope.reverse;
                     }
             //paging lop
-            
-
-			// $scope.khoi1 = [],
-			// $scope.currentPname = 1,
-			// $scope.numPerPname = 10,
-			// $scope.maxSize = 5;
-			// for(var i = 0; i < 100; i++){
-			// 		var clas = {name: "lop11"};
-			// 		khoi1.push(clas);
-			// }
-			// $scope.$watch('currentPtimtuoi + numPerPtimtuoi', function() {
-			// 		var begin = (($scope.currentPname - 1) * $scope.numPerPname),
-			// 		end = begin + $scope.numPerPname;
-			// $scope.filter = $scope.khoi1.slice(begin, end);
-			// });
-			
-			// $scope.sort = function(keyname){
-   //                          $scope.sortKey = keyname;   
-   //                          $scope.reverse = !$scope.reverse;
-   //                  }
-
+         
 
 
 
@@ -216,6 +201,35 @@ app.config(function ($routeProvider) {
 			}
 
 			//remove
+			$scope.deleteClass = function (classroom) {
+				var indexClass = $scope.khoi1.indexOf(classroom);
+				$scope.khoi1.splice(indexClass, 1);
+				var indexx = indexClass+1;
+				var k =0;
+				while(k<$scope.SinhVien.length){
+				  if($scope.SinhVien[k].idClass == indexx){
+					$scope.SinhVien.splice(k,1);
+				  }else{
+					k++;
+				  }
+				}
+				var i = 0;
+				while (i < $scope.khoi1.length) {
+				  var check = false;
+				  for (var j = 0; j < $scope.khoi1.length; j++) {
+					if (($scope.khoi1[j].id == $scope.khoi1[i].parentID) || $scope.khoi1[i].parentID == 0) {
+					  check = true;
+					  break;
+					}
+				  }
+				  if (check == false) {
+					$scope.khoi1.splice(i, 1);
+				  } else {
+					i++;
+				  }
+				}
+			
+			  }
 
 			$scope.reMoveLop = function(khoi1,index){
 				var index = $scope.khoi1.indexOf(khoi1);
@@ -251,9 +265,7 @@ app.config(function ($routeProvider) {
 				//$scope.formeditclass.khoi = $scope.formeditclass.name;
 				$scope.indexclass = index;
 			}
-			$scope.loadFormEditclass = function (sinh) {
-				
-			}
+			
 
 			$scope.saveEdit = function(){
 				$scope.change_Main_Edit = false;
